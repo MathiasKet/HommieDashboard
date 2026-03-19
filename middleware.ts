@@ -1,23 +1,9 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/login(.*)',
-  '/api/webhooks(.*)',
-  '/api/paystack/webhook(.*)'
-]);
-
-
-export default clerkMiddleware(async (auth, request) => {
-  // Demo Mode: Always allow access
-  /*
-  if (!isPublicRoute(request)) {
-    await auth.protect();
-  }
-  */
-});
-
+export default function middleware(request: NextRequest) {
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [

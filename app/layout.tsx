@@ -18,12 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    /* <ClerkProvider> */
       <html lang="en" suppressHydrationWarning>
         <body suppressHydrationWarning>
           <Providers>{children}</Providers>
         </body>
       </html>
-    </ClerkProvider>
+    /* </ClerkProvider> */
   );
 }

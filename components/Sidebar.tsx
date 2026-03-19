@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Home, Users, Building2, Flag, BarChart3, Settings, LogOut, Menu, X, DollarSign, CreditCard, Star, Clock, UserCheck } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useClerk, useUser } from '@clerk/nextjs';
+// import { useClerk, useUser } from '@clerk/nextjs'; // Disabled for demo mode
 import { Logo } from './Logo';
 
 const navItems = [
@@ -30,13 +30,15 @@ export function Sidebar() {
 function ClerkSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { signOut } = useClerk();
-  const { user } = useUser();
+  // const { signOut } = useClerk(); // Disabled for demo mode
+  // const { user } = useUser(); // Disabled for demo mode
+  const user: any = null; // Mocked for demo mode
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
-      await signOut();
+      // await signOut(); // Disabled for demo mode
+      localStorage.removeItem('hommie_admin:session');
       router.push('/login');
     } catch {
       window.location.href = '/login';

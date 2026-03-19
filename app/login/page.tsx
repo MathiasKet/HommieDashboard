@@ -11,7 +11,7 @@ export default function AdminLoginPage() {
 }
 
 function ClerkAdminLoginPage() {
-  const { isLoaded, signIn, setActive } = useSignIn();
+  // const { isLoaded, signIn, setActive } = useSignIn(); // Disabled for demo mode
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +25,7 @@ function ClerkAdminLoginPage() {
     setLoading(true);
 
     try {
+      /*
       if (isLoaded && signIn) {
         try {
           const result = await signIn.create({
@@ -41,6 +42,7 @@ function ClerkAdminLoginPage() {
           console.warn('Clerk login failed, trying mock login...', clerkErr);
         }
       }
+      */
 
       // Mock Login Fallback
       const { mockLogin } = await import('@/lib/mockData');

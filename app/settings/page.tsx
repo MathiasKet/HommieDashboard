@@ -1,13 +1,26 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/DashboardLayout';
-import { useUser, useClerk } from '@clerk/nextjs';
 import { Settings, User, Shield, Bell, Database, LogOut, ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function SettingsPage() {
-  const { user, isLoaded } = useUser();
-  const { signOut, openUserProfile } = useClerk();
+  // const { user, isLoaded } = useUser(); // Disabled for demo mode
+  // const { signOut, openUserProfile } = useClerk(); // Disabled for demo mode
+  
+  const isLoaded = true;
+  const user: any = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('hommie_admin:admins') || '[]').find((a: any) => a.id === JSON.parse(localStorage.getItem('hommie_admin:session') || '{}').adminId) : null;
+  const router = useRouter();
+
+  const signOut = () => {
+    localStorage.removeItem('hommie_admin:session');
+    router.push('/login');
+  };
+
+  const openUserProfile = () => {
+    alert('Profile management (Clerk) is disabled in demo mode.');
+  };
   
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [reportAlerts, setReportAlerts] = useState(true);

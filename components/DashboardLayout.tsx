@@ -3,19 +3,21 @@
 import { Sidebar } from './Sidebar';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
+// import { useUser } from '@clerk/nextjs'; // Disabled for demo mode
 import { AdminGuard } from './AdminGuard';
 import { NotificationCenter } from './NotificationCenter';
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { isLoaded, isSignedIn } = useUser();
+  // const { isLoaded, isSignedIn } = useUser(); // Disabled for demo mode
+  const isLoaded = true;
+  const isSignedIn = true;
   const router = useRouter();
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
+    if (typeof window !== 'undefined' && !localStorage.getItem('hommie_admin:session')) {
       router.push('/login');
     }
-  }, [isLoaded, isSignedIn, router]);
+  }, [router]);
 
   if (!isLoaded || !isSignedIn) {
     return (
